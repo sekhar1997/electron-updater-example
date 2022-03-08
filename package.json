@@ -1,15 +1,17 @@
 {
   "name": "electron-updater-example",
-  "version": "0.8.6",
+  "version": "0.8.7",
   "main": "main.js",
   "description": "electron-updater example project",
   "author": "Matt Haggard",
   "scripts": {
     "start": "electron --dev .",
+    "dist": "electron-builder",
     "pack": "node_modules/.bin/electron-builder --dir",
     "publish": "electron-builder -p always"
   },
   "devDependencies": {
+    "dotenv": "^16.0.0",
     "electron": "^14.0.1",
     "electron-builder": "^22.11.7",
     "electron-notarize": "^1.1.1"
@@ -22,6 +24,8 @@
     "appId": "com.github.sekhar1997.electronupdaterexample",
     "afterSign": "./build/notarize.js",
     "mac": {
+      "hardenedRuntime": true,
+      "entitlements":"./build/entitlements.mac.plist", 
       "category": "your.app.category.type"
     },
     "win": {
